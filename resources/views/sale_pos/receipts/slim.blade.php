@@ -353,16 +353,17 @@
                 </thead>
                 <tbody>
                 	@forelse($receipt_details->lines as $line)
-	                    <tr>
-	                        <td>
-								{{$loop->iteration}}. {{$line['name']}} {{$line['product_variation']}} {{$line['variation']}}
-	                        </td>
-							<td class="text-center">{{$line['unit_price_before_discount']}}</td>
-							<td class="text-center">{{$line['total_line_discount']}}</td>
-							<td class="text-center">{{$line['unit_price_inc_tax']}}</td>
-							<td class="text-center">{{$line['quantity']}}</td>
-							<td class="text-right">{{$line['line_total']}}</td>
-	                    </tr>
+					<tr class="@if(!$loop->last) border-bottom-dotted @endif">
+						<td>
+							{{$loop->iteration}}. {{$line['name']}} {{$line['product_variation']}} {{$line['variation']}}
+						</td>
+						<td class="text-center">{{$line['unit_price_before_discount']}}</td>
+						<td class="text-center">{{$line['total_line_discount']}}</td>
+						<td class="text-center">{{$line['unit_price_inc_tax']}}</td>
+						<td class="text-center">{{$line['quantity']}}</td>
+						<td class="text-right">{{$line['line_total']}}</td>
+					</tr>
+					
 	                    @if(!empty($line['modifiers']))
 							@foreach($line['modifiers'] as $modifier)
 								<tr>
