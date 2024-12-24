@@ -920,6 +920,7 @@ $(document).ready(function() {
             { data: 'customer', name: 'c.name' },
             { data: 'contact_id', name: 'c.contact_id' },
             { data: 'invoice_no', name: 't.invoice_no' },
+            { data: 'register_id', name: 't.register_id' },
             { data: 'transaction_date', name: 't.transaction_date' },
             { data: 'sell_qty', name: 'transaction_sell_lines.quantity' },
             { data: 'unit_price', name: 'transaction_sell_lines.unit_price_before_discount' },
