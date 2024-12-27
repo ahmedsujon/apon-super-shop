@@ -36,6 +36,177 @@
                     </div>
                     <div id="collapseFilter" class="panel-collapse active collapse" aria-expanded="true" style="">
                         <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-12 col-xs-12">
+                                    <div class="form-group pull-right">
+                                        <div class="input-group">
+                                            <button type="button" class="btn btn-primary" id="dashboard_date_filter">
+                                                <span>
+                                                    <i class="fa fa-calendar"></i> {{ __('messages.filter_by_date') }}
+                                                </span>
+                                                <i class="fa fa-caret-down"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <!-- total sell -->
+                                <div class="col-md-3 col-sm-6 col-xs-12 col-custom">
+                                    <div class="info-box info-box-new-style">
+                                        <span class="info-box-icon"><img
+                                                src="{{ asset('sadax/images/total_sale.jpg') }}" alt=""></span>
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">{{ __('home.total_sell') }}</span>
+                                            <span class="info-box-number total_sell"><i
+                                                    class="fas fa-sync fa-spin fa-fw margin-bottom"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- total purchase -->
+                                <div class="col-md-3 col-sm-6 col-xs-12 col-custom">
+                                    <div class="info-box info-box-new-style">
+                                        <span class="info-box-icon">
+                                            <img src="{{ asset('sadax/images/total_purchase.jpg') }}" alt="">
+                                        </span>
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">{{ __('lang_v1.net') }}
+                                                @show_tooltip(__('lang_v1.net_home_tooltip'))</span>
+                                            <span class="info-box-number net"><i
+                                                    class="fas fa-sync fa-spin fa-fw margin-bottom"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 col-sm-6 col-xs-12 col-custom">
+                                    <div class="info-box info-box-new-style">
+                                        <span class="info-box-icon">
+                                            <img src="{{ asset('sadax/images/purchase_due.jpg') }}" alt="">
+                                        </span>
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">{{ __('home.invoice_due') }}</span>
+                                            <span class="info-box-number invoice_due"><i
+                                                    class="fas fa-sync fa-spin fa-fw margin-bottom"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 col-sm-6 col-xs-12 col-custom">
+                                    <div class="info-box info-box-new-style">
+                                        <span class="info-box-icon">
+                                            <img src="{{ asset('sadax/images/invoice_due.jpg') }}" alt="">
+                                        </span>
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">{{ __('lang_v1.total_sell_return') }}</span>
+                                            <span class="info-box-number total_sell_return"><i
+                                                    class="fas fa-sync fa-spin fa-fw margin-bottom"></i></span>
+                                        </div>
+                                        <p class="mb-0 text-muted fs-10 mt-5">{{ __('lang_v1.total_sell_return') }}:
+                                            <span class="total_sr"></span><br>
+                                            {{ __('lang_v1.total_sell_return_paid') }}<span class="total_srp"></span>
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <!-- total purchase -->
+                                <div class="col-md-3 col-sm-6 col-xs-12 col-custom">
+                                    <div class="info-box info-box-new-style">
+                                        <span class="info-box-icon"><img
+                                                src="{{ asset('sadax/images/total_purchase.jpg') }}"
+                                                alt=""></span>
+
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">{{ __('home.total_purchase') }}</span>
+                                            <span class="info-box-number total_purchase"><i
+                                                    class="fas fa-sync fa-spin fa-fw margin-bottom"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- purchase due -->
+                                <div class="col-md-3 col-sm-6 col-xs-12 col-custom">
+                                    <div class="info-box info-box-new-style">
+                                        <span class="info-box-icon">
+                                            <img src="{{ asset('sadax/images/expence.jpg') }}" alt="">
+                                        </span>
+
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">{{ __('home.purchase_due') }}</span>
+                                            <span class="info-box-number purchase_due"><i
+                                                    class="fas fa-sync fa-spin fa-fw margin-bottom"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- sell_return -->
+                                <div class="col-md-3 col-sm-6 col-xs-12 col-custom">
+                                    <div class="info-box info-box-new-style">
+                                        <span class="info-box-icon">
+                                            <img src="{{ asset('sadax/images/sell_return.jpg') }}" alt="">
+                                        </span>
+                                        <div class="info-box-content">
+                                            <span
+                                                class="info-box-text">{{ __('lang_v1.total_purchase_return') }}</span>
+                                            <span class="info-box-number total_purchase_return"><i
+                                                    class="fas fa-sync fa-spin fa-fw margin-bottom"></i></span>
+                                        </div>
+                                        <p class="mb-0 text-muted fs-10 mt-5">
+                                            {{ __('lang_v1.total_purchase_return') }}: <span
+                                                class="total_pr"></span><br>
+                                            {{ __('lang_v1.total_purchase_return_paid') }}<span
+                                                class="total_prp"></span></p>
+                                    </div>
+                                </div>
+
+                                {{-- <div class="col-md-3 col-sm-6 col-xs-12 col-custom">
+                                    <div class="info-box info-box-new-style">
+                                        <span class="info-box-icon"><img src="{{ asset('sadax/images/sell_return.jpg') }}"
+                                                alt=""></span>
+                                        <div class="info-box-content">
+                                            <span style="margin-bottom: 5px !important;" class="info-box-text"> GROSS PROFIT
+                                                : </span>
+                                            <span style="margin-bottom: 5px !important;" class="info-box-number">
+                                                {{ $profits['gross_profit'] }}</span>
+                                            <span style="margin-bottom: 5px !important;" class="info-box-text">NET PROFIT :
+                                            </span>
+                                            <span style="margin-bottom: 5px !important;" class="info-box-number">৳
+                                                {{ $profits['net_profit'] }}</span>
+                                        </div>
+                                    </div>
+                                </div> --}}
+
+                                <!-- expense -->
+                                <div class="col-md-3 col-sm-6 col-xs-12 col-custom">
+                                    <div class="info-box info-box-new-style">
+                                        <span class="info-box-icon">
+                                            <img src="{{ asset('sadax/images/expence.jpg') }}" alt="">
+                                        </span>
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">
+                                                {{ __('lang_v1.expense') }}
+                                            </span>
+                                            <span class="info-box-number total_expense"><i
+                                                    class="fas fa-sync fa-spin fa-fw margin-bottom"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            {{-- <section class="content no-print">
+                <div class="box box-solid " id="accordion">
+                    <div class="box-header with-border" style="cursor: pointer;">
+                        <h3 class="box-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFilter" aria-expanded="true"
+                                class="">
+                                Details
+                            </a>
+                        </h3>
+                    </div>
+                    <div id="collapseFilter" class="panel-collapse active collapse" aria-expanded="true" style="">
+                        <div class="box-body">
                             <div class="col-md-12 col-xs-12">
                                 <div class="form-group pull-right">
                                     <div class="input-group">
@@ -153,7 +324,7 @@
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> --}}
             @if (!empty($widgets['after_sale_purchase_totals']))
                 @foreach ($widgets['after_sale_purchase_totals'] as $widget)
                     {!! $widget !!}
