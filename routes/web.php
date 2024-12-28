@@ -26,7 +26,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImportOpeningStockController;
 use App\Http\Controllers\ImportProductsController;
 use App\Http\Controllers\ImportSalesController;
-use App\Http\Controllers\Install;
+// use App\Http\Controllers\Install;
 use App\Http\Controllers\InvoiceLayoutController;
 use App\Http\Controllers\InvoiceSchemeController;
 use App\Http\Controllers\LabelsController;
@@ -87,10 +87,10 @@ Route::middleware(['setData'])->group(function () {
 
     Auth::routes();
 
-    Route::get('/business/register', [BusinessController::class, 'getRegister'])->name('business.getRegister');
-    Route::post('/business/register', [BusinessController::class, 'postRegister'])->name('business.postRegister');
-    Route::post('/business/register/check-username', [BusinessController::class, 'postCheckUsername'])->name('business.postCheckUsername');
-    Route::post('/business/register/check-email', [BusinessController::class, 'postCheckEmail'])->name('business.postCheckEmail');
+    // Route::get('/home', [BusinessController::class, 'getRegister'])->name('business.getRegister');
+    // Route::post('/home', [BusinessController::class, 'postRegister'])->name('business.postRegister');
+    // Route::post('/home', [BusinessController::class, 'postCheckUsername'])->name('business.postCheckUsername');
+    // Route::post('/home', [BusinessController::class, 'postCheckEmail'])->name('business.postCheckEmail');
 
     Route::get('/invoice/{token}', [SellPosController::class, 'showInvoice'])
         ->name('show_invoice');
