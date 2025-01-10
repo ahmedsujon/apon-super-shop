@@ -184,6 +184,8 @@ function update_statistics(start, end) {
     $('.total_expense').html(loader);
     $('.total_purchase_return').html(loader);
     $('.total_sell_return').html(loader);
+    $('.total_gross_profit').html(loader);
+    $('.total_net_profit').html(loader);
     $('.net').html(loader);
     $.ajax({
         method: 'get',
@@ -209,6 +211,8 @@ function update_statistics(start, end) {
             $('.total_pr').html(__currency_trans_from_en(data.total_purchase_return, true));
             $('.total_prp').html(__currency_trans_from_en(data.total_purchase_return_paid, true));
             $('.net').html(__currency_trans_from_en(data.net, true));
+            $('.total_gross_profit').html(__currency_trans_from_en(data.gross_profit, true));
+            $('.total_net_profit').html(__currency_trans_from_en(data.net_profit, true));
         },
     });
 }

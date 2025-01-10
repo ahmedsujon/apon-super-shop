@@ -139,39 +139,38 @@
                                 </div>
 
                                 <!-- sell_return -->
-                                <div class="col-md-3 col-sm-6 col-xs-12 col-custom">
+                                {{-- <div class="col-md-3 col-sm-6 col-xs-12 col-custom">
                                     <div class="info-box info-box-new-style">
                                         <span class="info-box-icon">
                                             <img src="{{ asset('sadax/images/sell_return.jpg') }}" alt="">
                                         </span>
                                         <div class="info-box-content">
-                                            <span class="info-box-text">{{ __('lang_v1.total_purchase_return') }}</span>
+                                            <span class="info-box-text">{{ __('lang_v1.gross_profit') }}</span>
                                             <span class="info-box-number total_purchase_return"><i
                                                     class="fas fa-sync fa-spin fa-fw margin-bottom"></i></span>
                                         </div>
                                         <p class="mb-0 text-muted fs-10 mt-5">
                                             {{ __('lang_v1.total_purchase_return') }}: <span class="total_pr"></span><br>
-                                            {{ __('lang_v1.total_purchase_return_paid') }}<span class="total_prp"></span>
                                         </p>
                                     </div>
-                                </div>
+                                </div> --}}
 
-                                {{-- <div class="col-md-3 col-sm-6 col-xs-12 col-custom">
+                                <div class="col-md-3 col-sm-6 col-xs-12 col-custom">
                                     <div class="info-box info-box-new-style">
                                         <span class="info-box-icon"><img src="{{ asset('sadax/images/sell_return.jpg') }}"
                                                 alt=""></span>
                                         <div class="info-box-content">
                                             <span style="margin-bottom: 5px !important;" class="info-box-text"> GROSS PROFIT
                                                 : </span>
-                                            <span style="margin-bottom: 5px !important;" class="info-box-number">
-                                                {{ $profits['gross_profit'] }}</span>
+                                            <span style="margin-bottom: 5px !important;" class="info-box-number total_gross_profit">
+                                                </span>
                                             <span style="margin-bottom: 5px !important;" class="info-box-text">NET PROFIT :
                                             </span>
-                                            <span style="margin-bottom: 5px !important;" class="info-box-number">৳
-                                                {{ $profits['net_profit'] }}</span>
+                                            <span style="margin-bottom: 5px !important;" class="info-box-number total_net_profit">৳
+                                                </span>
                                         </div>
                                     </div>
-                                </div> --}}
+                                </div>
 
                                 <!-- expense -->
                                 <div class="col-md-3 col-sm-6 col-xs-12 col-custom">
@@ -296,7 +295,7 @@
     </div>
 @stop
 @section('javascript')
-    <script src="{{ asset('js/home.js?v=' . $asset_v) }}"></script>
+    <script src="{{ asset('js/home.js?v=1' . $asset_v) }}"></script>
     <script src="{{ asset('js/payment.js?v=' . $asset_v) }}"></script>
     <script>
         $(document).ready(function() {
