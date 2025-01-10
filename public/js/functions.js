@@ -429,21 +429,41 @@ function __getUnitMultiplier(row){
 }
 
 //Rounds a number to the nearest given multiple
-function __round(number, multiple = 0){
+// function __round(number, multiple = 0){
 
-    rounded_number = number;
-    if(multiple > 0) {
-        x = new Decimal(number)
-        rounded_number = x.toNearest(multiple);
+//     rounded_number = number;
+//     if(multiple > 0) {
+//         x = new Decimal(number)
+//         rounded_number = x.toNearest(multiple);
+//     }
+
+//     var output = {
+//         number: rounded_number,
+//         diff: rounded_number - number
+//     }
+    
+//     return output;
+// }
+
+
+function __round(number, multiple = 1) {
+    let rounded_number = number;
+
+    if (multiple > 0) {
+        // Calculate the rounded number based on the logic
+        let factor = 1 / multiple;
+        rounded_number = Math.round(number * factor) / factor;
     }
 
-    var output = {
+    // Create output object with the rounded number and the difference
+    let output = {
         number: rounded_number,
         diff: rounded_number - number
-    }
-    
+    };
+
     return output;
 }
+
 
 //This method removes unwanted get parameter from the data.
 function __datatable_ajax_callback(data){
