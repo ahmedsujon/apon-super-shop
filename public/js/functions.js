@@ -390,12 +390,14 @@ function __print_receipt(section_id = null) {
     }
     
     img_len = imgs.length;
+    
     if (img_len) {
         img_counter = 0;
 
         [].forEach.call( imgs, function( img ) {
             img.addEventListener( 'load', incrementImageCounter, false );
         } );
+        window.print();
     } else {
         setTimeout(function() {
             window.print();
@@ -410,6 +412,7 @@ function __print_receipt(section_id = null) {
 
 function incrementImageCounter() {
     img_counter++;
+    window.print();
     if ( img_counter === img_len ) {
         window.print();
         
