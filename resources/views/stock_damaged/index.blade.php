@@ -25,12 +25,20 @@
                     <tr>
                         <th>@lang('messages.action')</th>
                         <th>@lang('messages.date')</th>
+                        <th>@lang('Total')</th>
                         <th>@lang('purchase.ref_no')</th>
                         <th>@lang('business.location')</th>
                         <th>@lang('stock_damaged.reason_for_stock_adjustment')</th>
                         <th>@lang('lang_v1.added_by')</th>
                     </tr>
                 </thead>
+                <tfoot>
+                    <tr>
+                        <td></td>
+                        <td>Total</td>
+                        <td colspan="5" class="final_total"></td>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     @endcomponent
@@ -46,5 +54,5 @@
 
 
 @section('javascript')
-	<script src="{{ asset('js/stock_damaged.js?v=' . $asset_v) }}"></script>
+	<script src="{{ asset('js/stock_damaged.js?v1=' . $asset_v) }}"></script>
 @endsection

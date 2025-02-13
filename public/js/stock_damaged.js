@@ -119,15 +119,40 @@ $(document).ready(function() {
         columns: [
             { data: 'action', name: 'action' },
             { data: 'transaction_date', name: 'transaction_date' },
+            { data: 'final_total', name: 'final_total' },
             { data: 'ref_no', name: 'ref_no' },
             { data: 'location_name', name: 'BL.name' },
             { data: 'additional_notes', name: 'additional_notes' },
             { data: 'added_by', name: 'u.first_name' },
         ],
+        // Use footerCallback to compute and display the sum
+        footerCallback: function (row, data, start, end, display) {
+            var api = this.api();
+    
+            // Function to remove any formatting (like currency symbols) and convert to float
+            var intVal = function (i) {
+                return typeof i === 'string' ?
+                    i.replace(/[^0-9.-]+/g, "") * 1 :
+                    typeof i === 'number' ?
+                        i : 0;
+            };
+    
+            // Sum over the data on the current page for the 'final_total' column (column index 2)
+            var pageTotal = api
+                .column(2, { page: 'current' })
+                .data()
+                .reduce(function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0);
+    
+            // Update the footer cell with class 'final_total'
+            $(api.table().footer()).find('td.final_total').html("৳ "+pageTotal.toFixed(2));
+        },
         fnDrawCallback: function(oSettings) {
             __currency_convert_recursively($('#stock_adjustment_table'));
         },
     });
+    
     var detailRows = [];
 
     $(document).on('click', 'button.delete_stock_adjustment', function() {
