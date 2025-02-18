@@ -156,6 +156,14 @@
                 </td>
             </tr>
             <tr>
+                <th>{{ __('Total Due Collected') }}:</th>
+                <td>
+                    <span class="display_currency" data-currency_symbol="true">{{$data['due_paid_totals']}}</span>
+                </td>
+            </tr>
+
+            
+            <tr>
                 <td colspan="2">
                 &nbsp;
                 </td>

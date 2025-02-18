@@ -50,7 +50,7 @@
                         @endphp
                     </td>
                     <td class="text-center">
-                        <a href="{{ url('/') }}/invoice/{{ $details['transaction_details']->invoice_token }}" target="_blank"><i class="fas fa-eye"></i> Invoice</a>
+                        <a href="{{ $details['invoice_url'] }}" target="_blank"><i class="fas fa-eye"></i> Invoice</a>
                     </td>
                 </tr>
             @endforeach

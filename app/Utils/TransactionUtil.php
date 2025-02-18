@@ -4562,6 +4562,67 @@ class TransactionUtil extends Util
         return $output;
     }
 
+
+    public function getTransactionDuePaidTotal(
+    $business_id,
+    $transaction_types,
+    $start_date = null,
+    $end_date = null,
+    $location_id = null,
+    $created_by = null
+) {
+    $query = Transaction::where('transactions.business_id', $business_id)
+        ->leftJoin('transaction_payments as tp', 'transactions.id', '=', 'tp.transaction_id');
+
+    // Check for permitted locations of a user
+    $permitted_locations = auth()->user()->permitted_locations();
+    if ($permitted_locations != 'all') {
+        if (in_array('payroll', $transaction_types)) {
+            $query->leftjoin('users as u1', 'u1.id', '=', 'transactions.expense_for')
+                ->whereIn('u1.location_id', $permitted_locations);
+        } else {
+            $query->whereIn('transactions.location_id', $permitted_locations);
+        }
+    }
+
+    // Apply date filter to transaction_payments.created_at
+    if (!empty($start_date) && !empty($end_date)) {
+        $query->whereBetween('tp.created_at', [$start_date, $end_date]);
+    } elseif (!empty($end_date)) {
+        $query->whereDate('tp.created_at', '<=', $end_date);
+    }
+
+    // Filter by location
+    if (!empty($location_id)) {
+        if (in_array('payroll', $transaction_types)) {
+            $query->leftjoin('users as u', 'u.id', '=', 'transactions.expense_for')
+                ->where('u.location_id', $location_id);
+        } else {
+            $query->where('transactions.location_id', $location_id);
+        }
+    }
+
+    // Filter by created_by
+    if (!empty($created_by)) {
+        $query->where('transactions.created_by', $created_by);
+    }
+
+    // Calculate total payments collected
+    $query->addSelect(
+        DB::raw("COALESCE(SUM(tp.amount), 0) as total_payments_collected")
+    );
+
+    $transaction_totals = $query->first();
+    $output = [];
+
+    // Payment collection total
+    $output = $transaction_totals->total_payments_collected;
+
+    return $output;
+}
+
+
+
     public function getGrossProfit($business_id, $start_date = null, $end_date = null, $location_id = null, $user_id = null)
     {
         $query = TransactionSellLine::join('transactions as sale', 'transaction_sell_lines.transaction_id', '=', 'sale.id')
@@ -5432,6 +5493,15 @@ class TransactionUtil extends Util
             $user_id
         );
 
+        $due_paid_totals = $this->getTransactionDuePaidTotal(
+            $business_id,
+            $transaction_types,
+            $start_date,
+            $end_date,
+            $location_id,
+            $user_id
+        );
+
         $gross_profit = $this->getGrossProfit(
             $business_id,
             $start_date,
@@ -5477,6 +5547,7 @@ class TransactionUtil extends Util
         //Stock adjustments
         $data['total_adjustment'] = $transaction_totals['total_adjustment'];
         $data['total_recovered'] = $transaction_totals['total_recovered'];
+        $data['due_paid_totals'] = $due_paid_totals;
 
         // $data['closing_stock'] = $data['closing_stock'] - $data['total_adjustment'];
 

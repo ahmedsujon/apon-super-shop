@@ -117,6 +117,7 @@ class ProductController extends Controller
                 'brands.name as brand',
                 'tax_rates.name as tax',
                 'products.sku',
+                'products.discount',
                 'products.image',
                 'products.enable_stock',
                 'products.is_inactive',
@@ -293,6 +294,22 @@ class ProductController extends Controller
                     'selling_price',
                     '<div style="white-space: nowrap;">@format_currency($min_price) @if($max_price != $min_price && $type == "variable") -  @format_currency($max_price)@endif </div>'
                 )
+    
+                ->addColumn('selling_price_after_discount', function ($row) {
+                    return  "৳ ".$row->min_price-$row->discount.".00";
+                })
+                ->addColumn('profit_percentage', function ($row) {
+    $selling_price_after_discount = $row->min_price - $row->discount;
+    $purchase_price = $row->min_purchase_price;
+
+    if ($purchase_price > 0) {
+        $profit_percentage = (($selling_price_after_discount - $purchase_price) / $purchase_price) * 100;
+    } else {
+        $profit_percentage = 0; // Avoid division by zero
+    }
+
+    return number_format($profit_percentage, 2) . '%';
+})
                 ->filterColumn('products.sku', function ($query, $keyword) {
                     $query->whereHas('variations', function ($q) use ($keyword) {
                         $q->where('sub_sku', 'like', "%{$keyword}%");

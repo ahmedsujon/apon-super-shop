@@ -214,16 +214,13 @@
                         @can('access_default_selling_price')
                             { data: 'selling_price', name: 'max_price', searchable: false},
                         @endcan
+                        { data: 'discount', searchable: false},
+                        { data: 'selling_price_after_discount', searchable: false},
+                        { data: 'profit_percentage', searchable: false},
                         { data: 'current_stock', searchable: false},
                         { data: 'sku', name: 'products.sku'},
-                        { data: 'type', name: 'products.type'},
                         { data: 'category', name: 'c1.name'},
-                        { data: 'product_locations', name: 'product_locations'  },
-                        
-                        
-                        
                         { data: 'brand', name: 'brands.name'},
-                        { data: 'tax', name: 'tax_rates.name', searchable: false},
                         
                         
                     ],

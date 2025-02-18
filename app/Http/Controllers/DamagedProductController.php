@@ -100,10 +100,7 @@ class DamagedProductController extends Controller
                         <button type="button" data-href="' . action([\App\Http\Controllers\DamagedProductController::class, 'destroy'], [$row->id]) . '" class="btn btn-danger btn-xs delete_stock_adjustment ' . $hide . '">
                             <i class="fa fa-trash" aria-hidden="true"></i> ' . __("messages.delete") . '
                         </button>
-                        &nbsp;
-                        <button type="button" data-href="' . action([\App\Http\Controllers\DamagedProductController::class, 'recoverAmount'], [$row->id]) . '" class="btn btn-primary btn-xs btn-modal" data-container=".view_modal" >
-                            <i class="fa fa-money" aria-hidden="true"></i> ' . __("messages.recover_amount") . '
-                        </button>';})
+                        &nbsp;';})
                 ->removeColumn('id')
                 ->editColumn(
                     'final_total',

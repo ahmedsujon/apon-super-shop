@@ -4,6 +4,7 @@ namespace App\Utils;
 
 use App\CashRegister;
 use App\CashRegisterTransaction;
+use App\Utils\TransactionUtil;
 use App\Transaction;
 use DB;
 
@@ -15,6 +16,15 @@ class CashRegisterUtil extends Util
      *
      * @return int
      */
+
+    protected $transactionUtil;
+
+    public function __construct(TransactionUtil $transactionUtil) {
+
+        $this->transactionUtil = $transactionUtil;
+    }
+
+
     public function countOpenedRegister()
     {
         $user_id = auth()->user()->id;
@@ -386,6 +396,7 @@ class CashRegisterUtil extends Util
                 ->where('transactions.is_direct_sale', 0)
                 ->where('transactions.status', 'final')
                 ->select(
+                    'transactions.id as trs_id',
                     'transactions.invoice_token as invoice_token',
                     DB::raw('SUM(tax_amount) as total_tax'),
                     DB::raw('SUM(IF(discount_type = "percentage", total_before_tax*discount_amount/100, discount_amount)) as total_discount'),
@@ -393,11 +404,15 @@ class CashRegisterUtil extends Util
                     DB::raw('SUM(shipping_charges) as total_shipping_charges')
                 )
                 ->first();
+        
+        $business_id = request()->session()->get('user.business_id');
+        $url = $this->transactionUtil->getInvoiceUrl($transaction_details->trs_id, $business_id);
 
         return ['product_details_by_brand' => $product_details_by_brand,
             'transaction_details' => $transaction_details,
             'types_of_service_details' => $types_of_service_details,
             'product_details' => $product_details,
+            'invoice_url' => $url
         ];
     }
 

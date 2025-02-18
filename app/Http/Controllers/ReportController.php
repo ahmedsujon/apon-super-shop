@@ -90,7 +90,7 @@ class ReportController extends Controller
         $business_id = $request->session()->get('user.business_id');
 
         //Return the details in ajax call
-        if ($request->ajax()) {
+         if ($request->ajax()) {
             $start_date = $request->get('start_date');
             $end_date = $request->get('end_date');
             $location_id = $request->get('location_id');
@@ -101,7 +101,7 @@ class ReportController extends Controller
             // $data['closing_stock'] = $data['closing_stock'] - $data['total_sell_return'];
 
             return view('report.partials.profit_loss_details', compact('data'))->render();
-        }
+         }
 
         $business_locations = BusinessLocation::forDropdown($business_id, true);
 

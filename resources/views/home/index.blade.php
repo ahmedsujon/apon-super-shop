@@ -236,7 +236,7 @@
                                                         @if ($supplier['supplier_id'] != null)
                                                             <option value="{{ $supplier['supplier_id'] }}"
                                                                 {{ request('supplier_id') == $supplier['supplier_id'] ? 'selected' : '' }}>
-                                                                {{ getSupplierByID($supplier['supplier_id'])->name }}</option>
+                                                                {{ getSupplierByID($supplier['supplier_id'])->name." ". getSupplierByID($supplier['supplier_id'])->supplier_business_name  }}</option>
                                                         @endif
                                                     @endforeach
                                                 </select>
