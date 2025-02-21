@@ -4574,6 +4574,8 @@ class TransactionUtil extends Util
     $query = Transaction::where('transactions.business_id', $business_id)
         ->leftJoin('transaction_payments as tp', 'transactions.id', '=', 'tp.transaction_id');
 
+    $query->type="sell";
+
     // Check for permitted locations of a user
     $permitted_locations = auth()->user()->permitted_locations();
     if ($permitted_locations != 'all') {

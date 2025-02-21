@@ -23,7 +23,7 @@
                 <th>@lang('lang_v1.selling_price')</th>
             @endcan
             <th>Discount</th>
-            <th>Selling Price(after discount)</th>
+            <th>Mrp</th>
             <th>Profit %</th>
             <th>@lang('report.current_stock')</th>
             <th>@lang('product.sku')</th>
