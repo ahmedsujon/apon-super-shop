@@ -400,7 +400,6 @@ function __print_receipt(section_id = null) {
         window.print();
     } else {
         setTimeout(function() {
-            window.print();
 
             // setTimeout(function() {
             //     $('#receipt_section').html('');
